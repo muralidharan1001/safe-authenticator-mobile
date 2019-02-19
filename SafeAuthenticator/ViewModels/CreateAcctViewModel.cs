@@ -154,11 +154,21 @@ namespace SafeAuthenticator.ViewModels
                 case 0:
                     return !string.IsNullOrWhiteSpace(Invitation);
                 case 1:
-                    return !string.IsNullOrWhiteSpace(AcctSecret) && !string.IsNullOrWhiteSpace(ConfirmAcctSecret) &&
-                        AcctSecret == ConfirmAcctSecret;
+                    {
+                        if (AcctSecret == ConfirmAcctSecret)
+                        {
+                            AcctSecretErrorMsg = string.Empty;
+                        }
+                        return !string.IsNullOrWhiteSpace(AcctSecret) && !string.IsNullOrWhiteSpace(ConfirmAcctSecret);
+                    }
                 case 2:
-                    return !string.IsNullOrWhiteSpace(AcctPassword) && !string.IsNullOrWhiteSpace(ConfirmAcctPassword) &&
-                        AcctPassword == ConfirmAcctPassword;
+                    {
+                        if (AcctPassword == ConfirmAcctPassword)
+                        {
+                            AcctPasswordErrorMsg = string.Empty;
+                        }
+                        return !string.IsNullOrWhiteSpace(AcctPassword) && !string.IsNullOrWhiteSpace(ConfirmAcctPassword);
+                    }
                 default:
                     return true;
             }
@@ -170,6 +180,13 @@ namespace SafeAuthenticator.ViewModels
             {
                 if (CarouselPagePosition == 1)
                 {
+                    if (AcctSecret != ConfirmAcctSecret)
+                    {
+                        AcctSecretErrorMsg = "Secret doesn't match";
+                        ((Command)CarouselContinueCommand).ChangeCanExecute();
+                        return;
+                    }
+
                     using (NativeProgressDialog.ShowNativeDialog("Checking secret strength"))
                     {
                         await Task.Run(() =>
@@ -186,9 +203,19 @@ namespace SafeAuthenticator.ViewModels
                 }
 
                 if (CarouselPagePosition < 2)
+                {
                     CarouselPagePosition += 1;
+                }
                 else
+                {
+                    if (AcctPassword != ConfirmAcctPassword)
+                    {
+                        AcctPasswordErrorMsg = "Password doesn't match";
+                        ((Command)CarouselContinueCommand).ChangeCanExecute();
+                        return;
+                    }
                     await CreateAcct();
+                }
             }
             catch (FfiException ex)
             {
