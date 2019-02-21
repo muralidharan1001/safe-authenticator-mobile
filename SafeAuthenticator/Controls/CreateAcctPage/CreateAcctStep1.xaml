@@ -70,7 +70,9 @@
             <Image Source="clipboardPaste"
                    Style="{DynamicResource ImageStyle}"
                    Grid.Column="1"
-                   HorizontalOptions="End">
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   Margin="0,0,0,5">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1"
                                           Command="{Binding ClipboardPasteCommand}" />

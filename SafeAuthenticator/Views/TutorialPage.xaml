@@ -49,8 +49,8 @@
                                        HorizontalOptions="CenterAndExpand"
                                        VerticalOptions="EndAndExpand"/>
 
-                                <Label HorizontalOptions="CenterAndExpand"
-                                       Style="{DynamicResource TitleStyle}"
+                                <Label Style="{DynamicResource TitleStyle}"
+                                       HorizontalTextAlignment="Center"
                                        Text="Securely connect to the SAFE Network"
                                        Margin="0, 40, 0, 0"
                                        VerticalOptions="End"/>
