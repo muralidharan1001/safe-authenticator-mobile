@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using SafeAuthenticator.Helpers;
 using SafeAuthenticator.Models;
 using SafeAuthenticator.Native;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SafeAuthenticator.ViewModels
@@ -38,6 +39,10 @@ namespace SafeAuthenticator.ViewModels
             {
                 try
                 {
+                    if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                    {
+                        throw new Exception("No internet connection");
+                    }
                     using (NativeProgressDialog.ShowNativeDialog("Revoking app access"))
                     {
                         await Authenticator.RevokeAppAsync(_appModelInfo.AppId);
