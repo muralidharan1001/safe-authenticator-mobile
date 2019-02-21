@@ -95,7 +95,7 @@ namespace SafeAuthenticator.Droid.Helpers
                     EditText.ContentDescription = Element.AutomationId;
 
                 if (Element.IsUnderlineTransparent)
-                    Control.EditText.SetPadding(Control.PaddingLeft, Control.PaddingTop, Control.PaddingRight, 0);
+                    Control.EditText.SetPadding(Control.PaddingLeft, Control.EditText.PaddingTop / 2, Control.PaddingRight, Control.EditText.PaddingBottom / 2);
 
                 _defaultTextColor = EditText.TextColors;
 
