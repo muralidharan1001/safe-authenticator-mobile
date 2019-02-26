@@ -53,10 +53,11 @@
 
             <StackLayout x:Name="PopupLayout" 
                          Spacing="10"
-                         Padding="16"
+                         Padding="0,16"
                          HeightRequest="{Binding PopupLayoutHeight}">
 
-                <Grid HorizontalOptions="FillAndExpand">
+                <Grid HorizontalOptions="FillAndExpand"
+                      Padding="16,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -96,8 +97,9 @@
 
                 <StackLayout x:Name="AppDetailsStackLayout"
                              VerticalOptions="Start" 
-                             IsVisible="False" 
-                             Margin="10,0">
+                             IsVisible="False"
+                             Padding="16,10"
+                             BackgroundColor="{StaticResource GreySnowLightColor}">
                     <Label Style="{StaticResource H2Style}">
                         <Label.FormattedText>
                             <FormattedString>
@@ -115,7 +117,8 @@
                 </StackLayout>
 
                 <StackLayout IsVisible="False"
-                             VerticalOptions="CenterAndExpand">
+                             VerticalOptions="CenterAndExpand"
+                             Padding="16,0">
                     <StackLayout.Triggers>
                         <DataTrigger TargetType="StackLayout"
                                          Binding="{Binding PopupState}"
@@ -236,7 +239,8 @@
                 <StackLayout Orientation="Horizontal"
                              IsVisible="False"
                              HorizontalOptions="CenterAndExpand"
-                             VerticalOptions="CenterAndExpand">
+                             VerticalOptions="CenterAndExpand"
+                             Padding="16,0">
                     <StackLayout.Triggers>
                         <DataTrigger TargetType="StackLayout"
                                          Binding="{Binding PopupState}"
@@ -254,7 +258,7 @@
 
                 <Frame HasShadow="False"
                        CornerRadius="4"
-                       Padding="10"
+                       Padding="26,0"
                        BackgroundColor="{StaticResource RedLightColor}"
                        IsVisible="False"                        
                        VerticalOptions="CenterAndExpand">
@@ -274,7 +278,8 @@
 
                 <StackLayout Orientation="Horizontal"
                              VerticalOptions="End"
-                             IsVisible="False">
+                             IsVisible="False"
+                             Padding="16,0">
                     <StackLayout.Triggers>
                         <DataTrigger TargetType="StackLayout"
                                          Binding="{Binding PopupState}"
@@ -311,7 +316,8 @@
                         Style="{StaticResource ButtonStyle}"
                         BackgroundColor="Transparent" 
                         WidthRequest="50"
-                        IsVisible="False">
+                        IsVisible="False"
+                        Padding="16,0">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button"
                                          Binding="{Binding PopupState}"
