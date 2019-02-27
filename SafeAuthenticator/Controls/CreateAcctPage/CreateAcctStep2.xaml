@@ -26,6 +26,5 @@
                             Text="{Binding ConfirmAcctSecret}"
                             ErrorText="{Binding AcctSecretErrorMsg}"
                             ReturnType="Done"
-                            ReturnCommand="{Binding CarouselContinueCommand}" />
-        
+                            ReturnCommand="{Binding CarouselContinueCommand}" />        
 </StackLayout>
