@@ -94,6 +94,12 @@
                                  IsVisible="{Binding IsUnregisteredRequest, Converter={StaticResource InverseBoolean}}"/>
                 </Grid>
 
+                <Label HorizontalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       Style="{StaticResource H1Style}"
+                       IsVisible="{Binding IsUnregisteredRequest}"
+                       Text="Authorisation request" />
+
                 <StackLayout x:Name="AppDetailsStackLayout"
                              VerticalOptions="Start" 
                              IsVisible="False" 
@@ -247,7 +253,7 @@
 
                     <ActivityIndicator IsRunning="True"/>
                     
-                    <Label Text="Authenticating Application..."
+                    <Label Text="Please wait..."
                            FontSize="{StaticResource LargeSize}"
                            VerticalTextAlignment="Center"/>
                 </StackLayout>

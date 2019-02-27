@@ -18,6 +18,6 @@
 
         // Dialogs
         internal static readonly string AutoReconnectInfoDialog = "Enable this feature to automatically reconnect to the network." +
-            "Your credentials will be securely stored on your device.Logging out will clear the credentials from memory.";
+            " Your credentials will be securely stored on your device. Logging out will clear the credentials from memory.";
     }
 }

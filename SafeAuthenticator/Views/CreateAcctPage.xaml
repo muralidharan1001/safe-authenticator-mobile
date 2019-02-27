@@ -23,7 +23,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="10">
+            <StackLayout >
                 <cv:CarouselViewControl
                     ShowArrows="False"
                     ShowIndicators="False"
@@ -50,7 +50,7 @@
 
                 <Button Text="CONTINUE"
                     Command="{Binding CarouselContinueCommand}"
-                    Margin="25,0"/>
+                    Margin="25,0,25,10"/>
 
                 <Button Text="BACK"
                     HorizontalOptions="Center"

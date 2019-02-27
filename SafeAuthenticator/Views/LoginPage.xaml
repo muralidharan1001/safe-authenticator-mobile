@@ -36,8 +36,7 @@
                                     Padding="25"
                                     IsScrollEnabled="False">
             <StackLayout>
-                <StackLayout VerticalOptions="CenterAndExpand"
-                             Spacing="10">
+                <StackLayout VerticalOptions="CenterAndExpand">
 
                     <Image Source="authLogo"
                            Style="{StaticResource ImageStyle}"
@@ -46,15 +45,15 @@
                     <Label Text="SAFE Authenticator"
                            Style="{StaticResource TitleStyle}"
                            HorizontalOptions="Center"
-                           Margin="0,10,0,0" />
+                           Margin="0,20,0,10" />
 
                     <controls:MaterialEntry x:Name="SecretEntry"
                                             Placeholder="Account Secret"
                                             IsPassword="True"
-                                            ErrorDisplay="None"
-                                            Margin="0,50,0,0"
+                                            Margin="0,30,0,10"
                                             Text="{Binding AccountSecret}"
                                             NextEntry="{Reference PasswordEntry}"
+                                            ErrorDisplay="None"
                                             ReturnType="Next"
                                             Focused="CustomEntryFocused"
                                             Unfocused="CustomEntryUnfocused"/>
@@ -62,7 +61,6 @@
                     <controls:MaterialEntry x:Name="PasswordEntry"
                                             Placeholder="Account Password" 
                                             IsPassword="True"
-                                            ErrorDisplay="None"
                                             Text="{Binding AccountPassword}"
                                             ReturnType="Done"
                                             ReturnCommand="{Binding LoginCommand}"

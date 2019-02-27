@@ -32,7 +32,7 @@ namespace SafeAuthenticator.ViewModels
         private async void OnRevokeAppCommand()
         {
             if (await Application.Current.MainPage.DisplayAlert(
-                "Revoke Access",
+                "Revoking application",
                 $"Are you sure you want to revoke access for {_appModelInfo.AppName}?",
                 "Revoke",
                 "Cancel"))
@@ -43,7 +43,7 @@ namespace SafeAuthenticator.ViewModels
                     {
                         throw new Exception("No internet connection");
                     }
-                    using (NativeProgressDialog.ShowNativeDialog("Revoking app access"))
+                    using (NativeProgressDialog.ShowNativeDialog("Revoking application"))
                     {
                         await Authenticator.RevokeAppAsync(_appModelInfo.AppId);
                         MessagingCenter.Send(this, MessengerConstants.NavHomePage);
@@ -57,7 +57,7 @@ namespace SafeAuthenticator.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", $"Revoke app Failed: {ex.Message}", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Error", $"Revoke Application Failed: {ex.Message}", "OK");
                 }
             }
         }

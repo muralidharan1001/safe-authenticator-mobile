@@ -98,12 +98,28 @@ namespace SafeAuthenticator.ViewModels
             set => SetProperty(ref _acctSecretErrorMsg, value);
         }
 
+        private string _acctSecretStrengthErrorMsg;
+
+        public string AcctSecretStrengthErrorMsg
+        {
+            get => _acctSecretStrengthErrorMsg;
+            set => SetProperty(ref _acctSecretStrengthErrorMsg, value);
+        }
+
         private string _acctPasswordErrorMsg;
 
         public string AcctPasswordErrorMsg
         {
             get => _acctPasswordErrorMsg;
             set => SetProperty(ref _acctPasswordErrorMsg, value);
+        }
+
+        private string _acctPasswordStrengthErrorMsg;
+
+        public string AcctPasswordStrengthErrorMsg
+        {
+            get => _acctPasswordStrengthErrorMsg;
+            set => SetProperty(ref _acctPasswordStrengthErrorMsg, value);
         }
 
         public ICommand CarouselPageChangeCommand { get; }
@@ -143,7 +159,9 @@ namespace SafeAuthenticator.ViewModels
             });
             ClipboardPasteCommand = new Command(async () =>
             {
-                Invitation = await Clipboard.GetTextAsync();
+                string invitation_temp = await Clipboard.GetTextAsync();
+                if (!string.IsNullOrWhiteSpace(invitation_temp))
+                    Invitation = invitation_temp;
             });
         }
 
@@ -158,6 +176,7 @@ namespace SafeAuthenticator.ViewModels
                         if (AcctSecret == ConfirmAcctSecret)
                         {
                             AcctSecretErrorMsg = string.Empty;
+                            AcctSecretStrengthErrorMsg = string.Empty;
                         }
                         return !string.IsNullOrWhiteSpace(AcctSecret) && !string.IsNullOrWhiteSpace(ConfirmAcctSecret);
                     }
@@ -166,6 +185,7 @@ namespace SafeAuthenticator.ViewModels
                         if (AcctPassword == ConfirmAcctPassword)
                         {
                             AcctPasswordErrorMsg = string.Empty;
+                            AcctPasswordStrengthErrorMsg = string.Empty;
                         }
                         return !string.IsNullOrWhiteSpace(AcctPassword) && !string.IsNullOrWhiteSpace(ConfirmAcctPassword);
                     }
@@ -194,10 +214,10 @@ namespace SafeAuthenticator.ViewModels
                             _locationStrength = Utilities.StrengthChecker(AcctSecret);
                             if (_locationStrength.Guesses < Constants.AccStrengthWeak)
                             {
-                                AcctSecretErrorMsg = "Secret needs to be stronger";
+                                AcctSecretStrengthErrorMsg = "Secret needs to be stronger";
                                 throw new InvalidOperationException();
                             }
-                            AcctSecretErrorMsg = string.Empty;
+                            AcctSecretStrengthErrorMsg = string.Empty;
                         });
                     }
                 }
@@ -245,10 +265,10 @@ namespace SafeAuthenticator.ViewModels
                     _passwordStrength = Utilities.StrengthChecker(AcctPassword);
                     if (_passwordStrength.Guesses < Constants.AccStrengthSomeWhatSecure)
                     {
-                        AcctPasswordErrorMsg = "Password needs to be stronger";
+                        AcctPasswordStrengthErrorMsg = "Password needs to be stronger";
                         throw new InvalidOperationException();
                     }
-                    AcctPasswordErrorMsg = string.Empty;
+                    AcctPasswordStrengthErrorMsg = string.Empty;
                 });
 
                 await Authenticator.CreateAccountAsync(AcctSecret, AcctPassword, Invitation);
