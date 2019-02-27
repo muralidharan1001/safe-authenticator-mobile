@@ -32,7 +32,7 @@ namespace SafeAuthenticator.ViewModels
         private async void OnRevokeAppCommand()
         {
             if (await Application.Current.MainPage.DisplayAlert(
-                "Revoking application",
+                "Revoke application",
                 $"Are you sure you want to revoke access for {_appModelInfo.AppName}?",
                 "Revoke",
                 "Cancel"))

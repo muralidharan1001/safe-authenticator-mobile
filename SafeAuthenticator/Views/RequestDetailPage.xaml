@@ -102,7 +102,7 @@
                        Text="Authorisation request" />
 
                 <StackLayout VerticalOptions="Start" 
-                             IsVisible="{Binding IsAppDetailsVisible}" 
+                             IsVisible="{Binding IsAppDetailsVisible}"
                              Padding="16,10"
                              BackgroundColor="{StaticResource GreySnowLightColor}">
                     <Label Style="{StaticResource H2Style}">

@@ -159,7 +159,7 @@ namespace SafeAuthenticator.ViewModels
             });
             ClipboardPasteCommand = new Command(async () =>
             {
-                string invitation_temp = await Clipboard.GetTextAsync();
+                string invitation_temp = (await Clipboard.GetTextAsync()).Trim();
                 if (!string.IsNullOrWhiteSpace(invitation_temp))
                     Invitation = invitation_temp;
             });
